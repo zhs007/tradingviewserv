@@ -1,0 +1,61 @@
+syntax = "proto3";
+
+enum RequestType {
+    SUBSCRIBE   = 0;
+    UNSUBSCRIBE = 1;
+}
+
+enum MessageType {
+    REQUESTRET  = 0;
+    CANDLES     = 1;
+}
+
+enum ErrorType {
+    ERR_SYSTEM  = 0;
+}
+
+message Request {
+    RequestType type = 1;
+    bytes buf = 2;
+}
+
+message Channel {
+    string symbol = 1;
+    string channel = 2;
+}
+
+message Req_Subscribe {
+    repeated Channel channels = 1;
+}
+
+message Req_Unsubscribe {
+    repeated Channel channels = 1;
+}
+
+message Message {
+    MessageType type = 1;
+    bytes buf = 2;
+}
+
+message ChannelInfo {
+    Channel channel = 1;
+    uint32 decimal_digits = 2;
+}
+
+message Msg_RequestRet {
+    bool isok = 1;
+    ErrorType err = 2;
+}
+
+message Candle {
+    uint64 open = 1;
+    uint64 close = 2;
+    uint64 high = 3;
+    uint64 low = 4;
+    uint64 volume = 5;
+    uint32 timestamp = 6;
+}
+
+message Msg_Candle {
+    repeated Candle candles = 1;
+}
