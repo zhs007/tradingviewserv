@@ -1,0 +1,8 @@
+{
+  "name": "tradingviewserv",
+  "version": "0.0.1",
+  "dependencies": {
+    "mysql2": "^1.5.3",
+    "ws": "^5.1.1"
+  }
+}
